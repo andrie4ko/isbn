@@ -199,7 +199,7 @@ class Isbn
     // FIXME: deprecate and remove on next major version
 
     private $_input;
-    private $_gs1Element;
+    private $_eanPrefixElement;
     private $_registrationGroupElement;
     private $_registrantElement;
     private $_publicationElement;
@@ -221,7 +221,7 @@ class Isbn
 
         try {
             $parsedCode = Parser::parse($code);
-            $this->_gs1Element = $parsedCode->getGs1Element();
+            $this->_eanPrefixElement = $parsedCode->getEanPrefixElement();
             $this->_registrationGroupElement = $parsedCode->getRegistrationGroupElement();
             $this->_registrantElement = $parsedCode->getRegistrantElement();
             $this->_publicationElement = $parsedCode->getPublicationElement();
@@ -346,7 +346,7 @@ class Isbn
 
     public function getProduct()
     {
-        return $this->_gs1Element;
+        return $this->_eanPrefixElement;
     }
 
     public function getCountry()
