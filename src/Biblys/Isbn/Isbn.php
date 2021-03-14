@@ -207,8 +207,16 @@ class Isbn
     private $_checksumCharacter;
     private $_gtin14Prefix;
 
+    /**
+     * @deprecated
+     */
     public function __construct($code = null)
     {
+        trigger_error(
+            "Instantiating the Isbn class is deprecated and will be removed in the future. Learn more: https://git.io/JqRgc",
+            E_USER_DEPRECATED
+        );
+
         $this->_input = $code;
 
         try {
@@ -219,7 +227,7 @@ class Isbn
             $this->_publicationElement = $parsedCode->getPublicationElement();
         } catch (IsbnParsingException $exception) {
             // FIXME in next major version (breaking change)
-            // For backward compatibility reason, instanciating should not throw
+            // For backward compatibility reason, instantiating should not throw
         }
     }
 
