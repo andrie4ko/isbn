@@ -78,6 +78,31 @@ All validating methods:
 
 [Learn more about validating ISBNs](https://github.com/biblys/isbn/wiki/Validating-ISBNs-using-the-new-public-API)
 
+### Parse
+
+Use case: extracting the publisher code from an ISBN.
+
+```php
+<?php
+use Biblys\Isbn\Isbn;
+
+try {
+    $input = "9782956420132";
+    $isbn = Isbn::parse($input);
+    echo $isbn->getRegistrantElement(); // Prints "9564201"
+} catch(Exception $e) { // Will throw because third hyphen is misplaced
+    echo "ISBN $input is invalid: ".$e->getMessage();
+}
+```
+
+`Isbn::parse` returns a `parsedIsbn` object implementing the following methods:
+- `ParsedIsbn->getEanPrefixElement`
+- `ParsedIsbn->getRegistrationGroupElement`
+- `ParsedIsbn->getRegistrantElement`
+- `ParsedIsbn->getPublicationElement`
+- `ParsedIsbn->getCheckDigit`
+
+
 ## Development
 
 ### Using Gitpod
